@@ -318,3 +318,6 @@ nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 
 set noshowmode
+let NERDTreeShowHidden=1
+
+
