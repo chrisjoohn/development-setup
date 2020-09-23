@@ -1,6 +1,9 @@
 
 call plug#begin('~/.vim/plugged')
 
+"Buffkill
+Plug 'qpkorr/vim-bufkill'
+
 "Intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -83,7 +86,7 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-tsserver']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-python']
 
 
 
@@ -324,4 +327,4 @@ nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 set noshowmode
 let NERDTreeShowHidden=1
 
-
+map <C-c> :BD<cr>
