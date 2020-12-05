@@ -1,6 +1,12 @@
 
 call plug#begin('~/.vim/plugged')
 
+"Show version control changes
+Plug 'airblade/vim-gitgutter'
+
+"Commenter
+Plug 'scrooloose/nerdcommenter'
+
 "Buffkill
 Plug 'qpkorr/vim-bufkill'
 
@@ -328,3 +334,5 @@ set noshowmode
 let NERDTreeShowHidden=1
 
 map <C-c> :BD<cr>
+
+set clipboard=unnamed
