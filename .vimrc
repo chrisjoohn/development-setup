@@ -1,6 +1,9 @@
 
 call plug#begin('~/.vim/plugged')
 
+"vim-ripgrep-
+"Plug 'jremmen/vim-ripgrep'
+
 "Show version control changes
 Plug 'airblade/vim-gitgutter'
 
@@ -40,8 +43,8 @@ Plug 'tpope/vim-eunuch'
 
 
 "fuzzy search
-"Plug 'junegunn/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 "ES6 plugin for vim
 Plug 'isruslan/vim-es6'
@@ -54,6 +57,9 @@ Plug 'christoomey/vim-tmux-navigator'
 
 "vim-jsx
 Plug 'mxw/vim-jsx'
+
+"vim-fugitive
+Plug 'tpope/vim-fugitive'
 
 
 
@@ -318,8 +324,8 @@ nnoremap <silent> <C-p> :FZF<CR>
 
 set termguicolors     " enable true colors support
 "let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
+"let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 
 let g:tmux_navigator_no_mappings = 1
@@ -336,3 +342,22 @@ let NERDTreeShowHidden=1
 map <C-c> :BD<cr>
 
 set clipboard=unnamed
+set backspace=indent,eol,start
+
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
+set rtp+=/usr/local/opt/fzf
+
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-f> :Rg<Cr>
+
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+  \ -g "!*.{min.js,swp,o,zip}"
+  \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
